@@ -38,7 +38,7 @@
 								<td th:text="${userDetail.detail}"></td>
 								<td><a th:href="@{/editDetail/{id}(id=${userDetail.id})}" class="btn btn-danger"><i
 										class="fas fa-user-edit ml-2"></i></a></td>
-								<td><a th:href="@{/delete}" class="btn btn-danger"><i
+								<td><a th:href="@{/deleteDetail/{id}(id=${userDetail.id})}" class="btn btn-danger"><i
 										class="fas fa-user-times ml-2"></i></a></td>
 
 							</tr>
