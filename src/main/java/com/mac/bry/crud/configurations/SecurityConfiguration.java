@@ -14,7 +14,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
             .anyRequest().authenticated()
         .and()
-        .formLogin();
+        .formLogin()
+        .loginPage("/loginform")
+        .permitAll();
 	}
 
 	@Override

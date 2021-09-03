@@ -24,8 +24,12 @@ public class UserController {
         this.userRepository = userRepository;
     }
     
+    @GetMapping("loginform")
+    public String login () {
+    	return "login-form";
+    }
     
-    @RequestMapping("/index")
+    @GetMapping("/index")
     public String showUserList(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "index";
