@@ -78,7 +78,7 @@ public class UserDetailsController {
 			detail.setId(id);
 			return "update-detail";
 		}
-		User user = userRepository.findById(this.id) 
+		User user = userRepository.findById(this.id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + this.id));
 
 		detail.setUser(user);
@@ -87,13 +87,13 @@ public class UserDetailsController {
 
 		return "redirect:/index";
 	}
-	
+
 	@GetMapping("/deleteDetail/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
-        UserDetails detail = detailRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid detail Id:" + id));
-        //User user = userRepository.findById(this.id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + this.id));
-        detail.setUser(null);
-        detailRepository.delete(detail);
-        return "redirect:/index";
-    }
+	public String deleteUser(@PathVariable("id") long id, Model model) {
+		UserDetails detail = detailRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid detail Id:" + id));
+		detail.setUser(null);
+		detailRepository.delete(detail);
+		return "redirect:/index";
+	}
 }
