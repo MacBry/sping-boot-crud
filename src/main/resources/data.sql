@@ -12,3 +12,6 @@ VALUES ('jan', 'ROLE_ADMIN');
 
 INSERT INTO authorities (username, authority)
 VALUES ('ania', 'ROLE_USER');
+
+INSERT INTO user_role(role, description)
+VALUES ("ROLE_USER", "default role for user");

@@ -10,30 +10,30 @@ public class UserUnitTest {
     
     @Test
     public void whenCalledGetName_thenCorrect() {
-        User user = new User("Julie", "julie@domain.com");
+    	 User user = new User ("a", "b", "c", "d");
         
-        assertThat(user.getName()).isEqualTo("Julie");
+        assertThat(user.getFirstName()).isEqualTo("Julie");
     }
     
     @Test
     public void whenCalledGetEmail_thenCorrect() {
-        User user = new User("Julie", "julie@domain.com");
+    	 User user = new User ("a", "b", "c", "d");
         
         assertThat(user.getEmail()).isEqualTo("julie@domain.com");
     }
     
     @Test
     public void whenCalledSetName_thenCorrect() {
-        User user = new User("Julie", "julie@domain.com");
+    	 User user = new User ("a", "b", "c", "d");
         
-        user.setName("John");
+        user.setFirstName("John");
         
-        assertThat(user.getName()).isEqualTo("John");
+        assertThat(user.getFirstName()).isEqualTo("John");
     }
     
     @Test
     public void whenCalledSetEmail_thenCorrect() {
-        User user = new User("Julie", "julie@domain.com");
+    	 User user = new User ("a", "b", "c", "d");
         
         user.setEmail("john@domain.com");
         
@@ -42,7 +42,7 @@ public class UserUnitTest {
     
     @Test
     public void whenCalledtoString_thenCorrect() {
-        User user = new User("Julie", "julie@domain.com");
+    	 User user = new User ("a", "b", "c", "d");
         assertThat(user.toString()).isEqualTo("User{id=0, name=Julie, email=julie@domain.com}");
     }
 }

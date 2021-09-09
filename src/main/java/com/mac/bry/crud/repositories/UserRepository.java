@@ -9,6 +9,8 @@ import com.mac.bry.crud.entities.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     
-    List<User> findByName(String name);
+    List<User> findByFirstName(String firstName);
+    
+    User findByEmail(String email);
     
 }

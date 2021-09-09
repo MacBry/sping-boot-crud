@@ -35,14 +35,14 @@ public class UserControllerUnitTest {
 
     @Test
     public void whenCalledshowSignUpForm_thenCorrect() {
-        User user = new User("John", "john@domain.com");
+        User user = new User ("a", "b", "c", "d");
 
         assertThat(userController.showSignUpForm(user)).isEqualTo("add-user");
     }
     
     @Test
     public void whenCalledaddUserAndValidUser_thenCorrect() {
-        User user = new User("John", "john@domain.com");
+        User user  = new User ("a", "b", "c", "d");
 
         when(mockedBindingResult.hasErrors()).thenReturn(false);
 
@@ -51,7 +51,7 @@ public class UserControllerUnitTest {
 
     @Test
     public void whenCalledaddUserAndInValidUser_thenCorrect() {
-        User user = new User("John", "john@domain.com");
+        User user  = new User ("a", "b", "c", "d");
 
         when(mockedBindingResult.hasErrors()).thenReturn(true);
 
@@ -65,7 +65,7 @@ public class UserControllerUnitTest {
     
     @Test
     public void whenCalledupdateUserAndValidUser_thenCorrect() {
-        User user = new User("John", "john@domain.com");
+        User user =   new User ("a", "b", "c", "d");
 
         when(mockedBindingResult.hasErrors()).thenReturn(false);
 
@@ -74,7 +74,7 @@ public class UserControllerUnitTest {
 
     @Test
     public void whenCalledupdateUserAndInValidUser_thenCorrect() {
-        User user = new User("John", "john@domain.com");
+    	 User user = new User ("a", "b", "c", "d");
 
         when(mockedBindingResult.hasErrors()).thenReturn(true);
 
