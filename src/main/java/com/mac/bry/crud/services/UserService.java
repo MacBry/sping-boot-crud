@@ -2,12 +2,14 @@ package com.mac.bry.crud.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.mac.bry.crud.entities.User;
 import com.mac.bry.crud.entities.UserRole;
 import com.mac.bry.crud.repositories.UserRepository;
 import com.mac.bry.crud.repositories.UserRoleRepository;
 
+@Service
 public class UserService {
 	
 	private static final String DEFAULT_ROLE ="ROLE_USER";
