@@ -13,18 +13,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mac.bry.crud.entities.User;
 import com.mac.bry.crud.repositories.UserRepository;
-import com.mac.bry.crud.services.UserService;
 
 @Controller
 public class UserController {
     
     private final UserRepository userRepository;
-    private UserService userService;
+   
 
     @Autowired
-    public UserController(UserRepository userRepository, UserService userService) {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.userService = userService;
     }
     
     @GetMapping("loginform")
@@ -32,21 +30,7 @@ public class UserController {
     	return "login-form";
     }
     
-    @GetMapping("/registerform")
-    public String register() {
-    	
-    	return "register-form";
-    }
-    
-    @PostMapping("/register")
-    public String addRegisterUser(@Valid User user, BindingResult result) {
-    	if(result.hasErrors())
-		return "register-form";
-	else {
-		userService.addWithDefaultRole(user);
-		return "registerSuccess";
-	}
-    }
+
     
     @GetMapping("/index")
     public String showUserList(Model model) {
