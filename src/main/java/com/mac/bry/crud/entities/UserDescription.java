@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class UserDetails implements Serializable {
+public class UserDescription implements Serializable {
 
 	/**
 	 * 
@@ -20,10 +20,10 @@ public class UserDetails implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="User_Details")
+	@Column(name="User_Descriptions")
 	private Long id;
 	
-	private String detail;
+	private String userDescription;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -31,20 +31,20 @@ public class UserDetails implements Serializable {
 
 	
 	
-	public UserDetails(Long id, String detail, User user) {
+	public UserDescription(Long id, String userDescription, User user) {
 		super();
 		this.id = id;
-		this.detail = detail;
+		this.userDescription = userDescription;
 		this.user = user;
 	}
 
-	public UserDetails(Long id, String detail) {
+	public UserDescription(Long id, String userDescription) {
 		super();
 		this.id = id;
-		this.detail = detail;
+		this.userDescription = userDescription;
 	}
 
-	public UserDetails() {
+	public UserDescription() {
 		super();
 	}
 
@@ -56,12 +56,12 @@ public class UserDetails implements Serializable {
 		this.id = id;
 	}
 
-	public String getDetail() {
-		return detail;
+	public String getUserDescription() {
+		return userDescription;
 	}
 
-	public void setDetail(String detail) {
-		this.detail = detail;
+	public void setUserDescription(String userDescription) {
+		this.userDescription = userDescription;
 	}
 
 	public User getUser() {
@@ -74,7 +74,7 @@ public class UserDetails implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserDetails [id=" + id + ", detail=" + detail + ", user=" + user + "]";
+		return "UserDescription [id=" + id + ", userDescription=" + userDescription + ", user=" + user + "]";
 	}
 	
 	

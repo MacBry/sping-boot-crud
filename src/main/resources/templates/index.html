@@ -36,7 +36,7 @@
                                     <td th:text="${user.password}"></td>
                                     <td><a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-user-edit ml-2"></i></a></td>
                                     <td><a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-user-times ml-2"></i></a></td>
-                                    <td><a th:href="@{/userDetail/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-address-card"></i></a></td>
+                                    <td><a th:href="@{/userDescription/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-address-card"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>

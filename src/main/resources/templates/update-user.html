@@ -17,21 +17,32 @@
                     <form action="#" th:action="@{/update/{id}(id=${user.id})}" th:object="${user}" method="post">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="name" class="col-form-label">Name</label>
-                                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
-                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                                <label for="firstName" class="col-form-label">First Name</label>
+                                <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="First Name">
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-6">
+                                <label for="lastName" class="col-form-label">Last Name</label>
+                                <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Last Name">
+                                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
+                            </div>
+                            
+                            	<div class="form-group col-md-6">
                                 <label for="email" class="col-form-label">Email</label>
                                 <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">
                                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-                            </div>
+                            	</div>
+                            	<div class="form-group col-md-6">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input type="text" th:field="*{password}" class="form-control" id="password" placeholder="Password">
+                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{passwor}" class="text-danger"></span>
+                            	</div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-md-6 mt-5">
                                 <input type="submit" class="btn btn-danger" value="Update User">
                             </div>
-                        </div>    
                     </form>
                 </div>
             </div>

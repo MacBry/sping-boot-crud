@@ -13,76 +13,76 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mac.bry.crud.entities.User;
-import com.mac.bry.crud.entities.UserDetails;
-import com.mac.bry.crud.repositories.UserDetailsRepository;
+import com.mac.bry.crud.entities.UserDescription;
+import com.mac.bry.crud.repositories.UserDescriptionRepository;
 import com.mac.bry.crud.repositories.UserRepository;
 
 @Controller
 public class UserDetailsController {
 
 	private final UserRepository userRepository;
-	private final UserDetailsRepository detailRepository;
+	private final UserDescriptionRepository userDescriptionRepository;
 	private long id;
 
 	@Autowired
-	public UserDetailsController(UserRepository userRepository, UserDetailsRepository detailRepository) {
+	public UserDetailsController(UserRepository userRepository, UserDescriptionRepository detailRepository) {
 		super();
 		this.userRepository = userRepository;
-		this.detailRepository = detailRepository;
+		this.userDescriptionRepository = detailRepository;
 	}
 
-	@GetMapping("/userDetail/{id}")
+	@GetMapping("/userDescription/{id}")
 	public String showDetail(@PathVariable("id") long id, Model model) {
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		List<UserDetails> userDetails = user.getUserDetails();
-		model.addAttribute("userDetails", userDetails);
+		List<UserDescription> userDescription = user.getUserDetails();
+		model.addAttribute("userDetails", userDescription);
 		this.id = id;
-		return "show-detail";
+		return "show-description";
 	}
 
-	@GetMapping("/showAddDetailForm")
-	public String showUserDetailForm(UserDetails userDetails) {
-		return "add-detail";
+	@GetMapping("/showAddDescriptionForm")
+	public String showUserDetailForm(UserDescription userDescription) {
+		return "add-description";
 	}
 
-	@PostMapping("/addUserDetail")
-	public String addUser(@Valid UserDetails userDetails, BindingResult result, Model model) {
-		model.addAttribute(userDetails);
+	@PostMapping("/addUserDescription")
+	public String addUserDescription(@Valid UserDescription userDescription, BindingResult result, Model model) {
+		model.addAttribute(userDescription);
 		if (result.hasErrors()) {
 			return "add-user";
 		}
 
 		User user = userRepository.findById(this.id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + this.id));
-		userDetails.setUser(user);
-		user.addDetail(userDetails);
-		detailRepository.save(userDetails);
+		userDescription.setUser(user);
+		user.addDescription(userDescription);
+		userDescriptionRepository.save(userDescription);
 		userRepository.save(user);
 		return "redirect:/index";
 	}
 
-	@GetMapping("/editDetail/{id}")
+	@GetMapping("/editDescription/{id}")
 	public String showUpdateDetailForm(@PathVariable("id") long id, Model model) {
-		UserDetails details = detailRepository.findById(id)
+		UserDescription description = userDescriptionRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid detail Id:" + id));
-		model.addAttribute("detail", details);
+		model.addAttribute("description", description);
 
-		return "update-detail";
+		return "update-description";
 	}
 
-	@PostMapping("/updateDetail/{id}")
-	public String updateUser(@PathVariable("id") long id, @Valid UserDetails detail, BindingResult result,
+	@PostMapping("/updateDescription/{id}")
+	public String updateUser(@PathVariable("id") long id, @Valid UserDescription description, BindingResult result,
 			Model model) {
 		if (result.hasErrors()) {
-			detail.setId(id);
-			return "update-detail";
+			description.setId(id);
+			return "update-description";
 		}
 		User user = userRepository.findById(this.id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + this.id));
 
-		detail.setUser(user);
-		detailRepository.save(detail);
+		description.setUser(user);
+		userDescriptionRepository.save(description);
 		userRepository.save(user);
 
 		return "redirect:/index";
@@ -90,10 +90,10 @@ public class UserDetailsController {
 
 	@GetMapping("/deleteDetail/{id}")
 	public String deleteUser(@PathVariable("id") long id, Model model) {
-		UserDetails detail = detailRepository.findById(id)
+		UserDescription detail = userDescriptionRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid detail Id:" + id));
 		detail.setUser(null);
-		detailRepository.delete(detail);
+		userDescriptionRepository.delete(detail);
 		return "redirect:/index";
 	}
 }

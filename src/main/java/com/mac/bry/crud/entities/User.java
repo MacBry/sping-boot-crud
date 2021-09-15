@@ -39,7 +39,7 @@ public class User {
     private Set<UserRole> roles = new HashSet<>();
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<UserDetails> userDetails = new ArrayList<>();
+    private List<UserDescription> userDescription = new ArrayList<>();
 
     public User() {}
 
@@ -90,12 +90,12 @@ public class User {
 		this.password = password;
 	}
 
-	public List<UserDetails> getUserDetails() {
-		return userDetails;
+	public List<UserDescription> getUserDetails() {
+		return userDescription;
 	}
     
-    public void addDetail (UserDetails detail) {
-    	this.userDetails.add(detail);
+    public void addDescription (UserDescription description) {
+    	this.userDescription.add(description);
     }
     
     
@@ -107,8 +107,8 @@ public class User {
 		this.roles = roles;
 	}
 
-	public void setUserDetails(List<UserDetails> userDetails) {
-		this.userDetails = userDetails;
+	public void setUserDescription(List<UserDescription> userDescription) {
+		this.userDescription = userDescription;
 	}
 	
 	
@@ -116,6 +116,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", userDetails=" + userDetails + "]";
+				+ ", password=" + password + ", userDescription=" + userDescription + "]";
 	}
 }
