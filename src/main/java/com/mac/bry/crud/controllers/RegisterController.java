@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.mac.bry.crud.entities.User;
-import com.mac.bry.crud.services.UserService;
+import com.mac.bry.crud.services.UserRegistrationService;
 
 @Controller
 public class RegisterController {
 	
-	private UserService userService;
+	private UserRegistrationService userRegistrationService;
     
 	@Autowired
-    public RegisterController(UserService userService) {
-        this.userService = userService;
+    public RegisterController(UserRegistrationService userRegistrationService) {
+        this.userRegistrationService = userRegistrationService;
     }
 	
 
@@ -33,7 +33,7 @@ public class RegisterController {
     	if(result.hasErrors())
 		return "register-form";
     	else {
-		userService.addWithDefaultRole(user);
+		userRegistrationService.addWithDefaultRole(user);
 		return "redirect:/index";
     	}
 	}

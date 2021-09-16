@@ -89,11 +89,11 @@ public class UserDetailsController {
 	}
 
 	@GetMapping("/deleteDescription/{id}")
-	public String deleteUser(@PathVariable("id") long id, Model model) {
-		UserDescription detail = userDescriptionRepository.findById(id)
+	public String deleteUserDescription(@PathVariable("id") long id, Model model) {
+		UserDescription description = userDescriptionRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid detail Id:" + id));
-		detail.setUser(null);
-		userDescriptionRepository.delete(detail);
+		description.setUser(null);
+		userDescriptionRepository.delete(description);
 		return "redirect:/index";
 	}
 }
