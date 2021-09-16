@@ -18,8 +18,8 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="name" class="col-form-label">Description</label>
-                                <input type="text" th:field="*{userDescription}" class="form-control" id="userDescription" placeholder="Description">
-                                <span th:if="${#fields.hasErrors('userDescription')}" th:errors="*{userDescription}" class="text-danger"></span>
+                                <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="description">
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
                             </div>
                            
                         </div>

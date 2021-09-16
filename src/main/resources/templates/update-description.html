@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Update User</title>
+        <title>Update User Descriptions</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -11,20 +11,20 @@
     </head>
     <body>
         <div class="container my-5">
-            <h2 class="mb-5">Update Detail</h2>
+            <h2 class="mb-5">Update Description</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <form action="#" th:action="@{/updateDetail/{id}(id=${detail.id})}" th:object="${detail}" method="post">
+                    <form action="#" th:action="@{/updateDescription/{id}(id=${description.id})}" th:object="${description}" method="post">
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="name" class="col-form-label">Detail</label>
-                                <input type="text" th:field="*{detail}" class="form-control" id="detail" placeholder="Detail">
-                                <span th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}" class="text-danger"></span>
+                                <label for="name" class="col-form-label">Description</label>
+                                <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="description">
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
                             </div>              
                         </div>
                         <div class="row">
                             <div class="col-md-6 mt-5">
-                                <input type="submit" class="btn btn-danger" value="Update Detail">
+                                <input type="submit" class="btn btn-danger" value="Update Description">
                             </div>
                         </div>    
                     </form>

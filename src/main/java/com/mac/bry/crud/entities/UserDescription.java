@@ -23,7 +23,7 @@ public class UserDescription implements Serializable {
 	@Column(name="User_Descriptions")
 	private Long id;
 	
-	private String userDescription;
+	private String description;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -31,17 +31,17 @@ public class UserDescription implements Serializable {
 
 	
 	
-	public UserDescription(Long id, String userDescription, User user) {
+	public UserDescription(Long id, String description, User user) {
 		super();
 		this.id = id;
-		this.userDescription = userDescription;
+		this.description = description;
 		this.user = user;
 	}
 
-	public UserDescription(Long id, String userDescription) {
+	public UserDescription(Long id, String description) {
 		super();
 		this.id = id;
-		this.userDescription = userDescription;
+		this.description = description;
 	}
 
 	public UserDescription() {
@@ -56,12 +56,12 @@ public class UserDescription implements Serializable {
 		this.id = id;
 	}
 
-	public String getUserDescription() {
-		return userDescription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setUserDescription(String userDescription) {
-		this.userDescription = userDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public User getUser() {
@@ -74,7 +74,7 @@ public class UserDescription implements Serializable {
 
 	@Override
 	public String toString() {
-		return "UserDescription [id=" + id + ", userDescription=" + userDescription + ", user=" + user + "]";
+		return "UserDescription [id=" + id + ", description=" + description + ", user=" + user + "]";
 	}
 	
 	

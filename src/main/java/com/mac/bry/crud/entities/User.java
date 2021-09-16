@@ -90,7 +90,7 @@ public class User {
 		this.password = password;
 	}
 
-	public List<UserDescription> getUserDetails() {
+	public List<UserDescription> getUserDescription() {
 		return userDescription;
 	}
     

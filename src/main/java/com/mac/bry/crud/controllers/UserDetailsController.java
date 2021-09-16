@@ -35,8 +35,8 @@ public class UserDetailsController {
 	public String showDetail(@PathVariable("id") long id, Model model) {
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		List<UserDescription> userDescription = user.getUserDetails();
-		model.addAttribute("userDetails", userDescription);
+		List<UserDescription> userDescription = user.getUserDescription();
+		model.addAttribute("userDescription", userDescription);
 		this.id = id;
 		return "show-description";
 	}
@@ -47,17 +47,17 @@ public class UserDetailsController {
 	}
 
 	@PostMapping("/addUserDescription")
-	public String addUserDescription(@Valid UserDescription userDescription, BindingResult result, Model model) {
-		model.addAttribute(userDescription);
+	public String addUserDescription(@Valid UserDescription userDescriptions, BindingResult result, Model model) {
+		model.addAttribute(userDescriptions);
 		if (result.hasErrors()) {
 			return "add-user";
 		}
-
+		
 		User user = userRepository.findById(this.id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + this.id));
-		userDescription.setUser(user);
-		user.addDescription(userDescription);
-		userDescriptionRepository.save(userDescription);
+		userDescriptions.setUser(user);
+		user.addDescription(userDescriptions);
+		userDescriptionRepository.save(userDescriptions);
 		userRepository.save(user);
 		return "redirect:/index";
 	}
@@ -72,7 +72,7 @@ public class UserDetailsController {
 	}
 
 	@PostMapping("/updateDescription/{id}")
-	public String updateUser(@PathVariable("id") long id, @Valid UserDescription description, BindingResult result,
+	public String updateUserDescription(@PathVariable("id") long id, @Valid UserDescription description, BindingResult result,
 			Model model) {
 		if (result.hasErrors()) {
 			description.setId(id);
@@ -88,7 +88,7 @@ public class UserDetailsController {
 		return "redirect:/index";
 	}
 
-	@GetMapping("/deleteDetail/{id}")
+	@GetMapping("/deleteDescription/{id}")
 	public String deleteUser(@PathVariable("id") long id, Model model) {
 		UserDescription detail = userDescriptionRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid detail Id:" + id));
