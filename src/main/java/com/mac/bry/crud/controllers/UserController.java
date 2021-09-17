@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import com.mac.bry.crud.entities.User;
-import com.mac.bry.crud.repositories.UserRepository;
+import com.mac.bry.crud.services.UserService;
 
 @Controller
 public class UserController {
     
-    private final UserRepository userRepository;
+    private final UserService userService;
    
 
     @Autowired
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
     
     @GetMapping("loginform")
@@ -34,7 +34,7 @@ public class UserController {
     
     @GetMapping("/index")
     public String showUserList(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userService.findAllUsers());
         return "index";
     }
    
@@ -50,13 +50,13 @@ public class UserController {
             return "add-user";
         }
         
-        userRepository.save(user);
+        userService.addUser(user);
         return "redirect:/index";
     }
     
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        User user = userService.findUserById(id);
         model.addAttribute("user", user);
         
         return "update-user";
@@ -69,15 +69,15 @@ public class UserController {
             return "update-user";
         }
         
-        userRepository.save(user);
+        userService.updateUser(user);
 
         return "redirect:/index";
     }
     
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id, Model model) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        userRepository.delete(user);
+        
+        userService.deleteUser(id);
         return "redirect:/index";
     }
     

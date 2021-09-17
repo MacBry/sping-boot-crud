@@ -5,6 +5,8 @@ import com.mac.bry.crud.entities.UserDescription;
 
 public interface UserService {
 
+	Iterable<User> findAllUsers();
+	
 	User findUserById(long id);
 
 	void addUser(User user);
@@ -12,6 +14,8 @@ public interface UserService {
 	void updateUser(User user);
 
 	void deleteUser(long id);
+	
+	Iterable<UserDescription> showAllDescription(long id);
 
 	void addDescriptionToUser(long id, UserDescription userDescription);
 
@@ -20,5 +24,7 @@ public interface UserService {
 	void updateDescription(long id, UserDescription userDescription);
 
 	void deleteUserDescription(long id);
+
+	
 
 }

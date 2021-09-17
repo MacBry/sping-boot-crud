@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.mac.bry.crud.entities.User;
 import com.mac.bry.crud.entities.UserRole;
+import com.mac.bry.crud.entities.UserRoles;
 import com.mac.bry.crud.repositories.UserRepository;
 import com.mac.bry.crud.repositories.UserRoleRepository;
 
 @Service
 public class UserRegistrationService {
 	
-	private static final String DEFAULT_ROLE ="ROLE_USER";
 	
 	private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
@@ -35,7 +35,7 @@ public class UserRegistrationService {
 	}
 	
 	public void addWithDefaultRole(User user) {
-		UserRole defaultRole = userRoleRepository.findByRole(DEFAULT_ROLE);
+		UserRole defaultRole = userRoleRepository.findByRole(UserRoles.DEFAULT_ROLE.getDescription());
 		user.getRoles().add(defaultRole);
 		String passwordHash = passwordEncoder.encode(user.getPassword());
 		user.setPassword(passwordHash);

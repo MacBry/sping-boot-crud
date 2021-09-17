@@ -1,6 +1,7 @@
 package com.mac.bry.crud.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mac.bry.crud.entities.User;
@@ -14,12 +15,19 @@ public class UserServiceImpl implements UserService {
 	
 	private UserRepository userRepository;
 	private UserDescriptionRepository userDescriptionRepository;
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, UserDescriptionRepository userDescriptionRepository) {
+	public UserServiceImpl(UserRepository userRepository, UserDescriptionRepository userDescriptionRepository, PasswordEncoder passwordEncoder) {
 		super();
 		this.userRepository = userRepository;
 		this.userDescriptionRepository = userDescriptionRepository;
+		this.passwordEncoder =passwordEncoder;
+	}
+	
+	@Override
+	public Iterable<User> findAllUsers(){
+		return userRepository.findAll();
 	}
 	
 	@Override
@@ -30,11 +38,13 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void addUser(User user) {
+		hashPassword(user);
 		userRepository.save(user);
 	}
 	
 	@Override
 	public void updateUser(User user) {
+		hashPassword(user);
 		userRepository.save(user);
 	}
 	
@@ -42,6 +52,12 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(long id) {
 		User user = findUserById(id);
 		userRepository.delete(user);
+	}
+	
+	@Override
+	public Iterable<UserDescription> showAllDescription(long id) {
+		User user = findUserById(id);
+		return  user.getUserDescription();
 	}
 	
 	@Override
@@ -73,5 +89,10 @@ public class UserServiceImpl implements UserService {
 		userDescription.setUser(null);
 		userDescriptionRepository.delete(userDescription);
 		
+	}
+	
+	private void hashPassword(User user) {
+		String passwordHash = passwordEncoder.encode(user.getPassword());
+		user.setPassword(passwordHash);
 	}
 }
