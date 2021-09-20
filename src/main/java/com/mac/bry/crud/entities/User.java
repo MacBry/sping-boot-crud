@@ -14,7 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 public class User {
@@ -24,15 +27,19 @@ public class User {
     @Column(name="User_ID")
     private long id;
     @NotBlank(message = "First Name is mandatory")
+    @Length( min = 2)
     private String firstName;
     
     @NotBlank(message = "Last Name i mandatory")
+    @Length(min = 2)
     private String lastName;
     
     @NotBlank(message = "Email is mandatory")
+    @Email
     private String email;
     
     @NotBlank(message = "Password is mandatory")
+    @Length(min = 3)
     private String password;
     
     @ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
