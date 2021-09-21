@@ -1,5 +1,7 @@
 package com.mac.bry.crud.services;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import com.mac.bry.crud.entities.User;
 import com.mac.bry.crud.entities.UserDescription;
 import com.mac.bry.crud.repositories.UserDescriptionRepository;
 import com.mac.bry.crud.repositories.UserRepository;
+import com.mac.bry.crud.utilitis.EmailSender;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,6 +26,11 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 		this.userDescriptionRepository = userDescriptionRepository;
 		this.passwordEncoder =passwordEncoder;
+	}
+	
+	@Override
+	public User findUserByMail(String mail) {
+		return userRepository.findByEmail(mail);
 	}
 	
 	@Override
@@ -52,6 +60,11 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(long id) {
 		User user = findUserById(id);
 		userRepository.delete(user);
+	}
+	
+	@Override	
+	public void resetUserPassword(String mail) {
+		
 	}
 	
 	@Override
@@ -94,5 +107,30 @@ public class UserServiceImpl implements UserService {
 	private void hashPassword(User user) {
 		String passwordHash = passwordEncoder.encode(user.getPassword());
 		user.setPassword(passwordHash);
+	}
+	
+	private String generateRandomPassword() {
+		int leftLimit = 97; // letter 'a'
+	    int rightLimit = 122; // letter 'z'
+	    int targetStringLength = 10;
+	    Random random = new Random();
+	    StringBuilder buffer = new StringBuilder(targetStringLength);
+	    for (int i = 0; i < targetStringLength; i++) {
+	        int randomLimitedInt = leftLimit + (int) 
+	          (random.nextFloat() * (rightLimit - leftLimit + 1));
+	        buffer.append((char) randomLimitedInt);
+	    }
+	    return  buffer.toString();
+
+	}
+	
+	@Override
+	public void resetPassword(String mail) {
+		String newPassword = generateRandomPassword();
+		User user = userRepository.findByEmail(mail);
+		user.setPassword(newPassword);
+		hashPassword(user);
+		userRepository.save(user);
+		EmailSender.configureMail(mail, newPassword);
 	}
 }

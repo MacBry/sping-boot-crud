@@ -24,6 +24,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/loginform").permitAll()
 		.antMatchers("/register").permitAll()
 		.antMatchers("/registerform").permitAll()
+		.antMatchers("/resetPasswordForm").permitAll()
+		.antMatchers("/resetPassword").permitAll()
 		.anyRequest().authenticated()
 				.and().formLogin().loginPage("/loginform");
 		        

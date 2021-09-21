@@ -1,4 +1,4 @@
-package com.mac.bry.crud.controllers;
+package com.mac.bry.crud.MVCcontrollers;
 
 import javax.validation.Valid;
 

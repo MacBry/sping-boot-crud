@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
-import com.mac.bry.crud.controllers.UserController;
+import com.mac.bry.crud.MVCcontrollers.UserController;
 import com.mac.bry.crud.entities.User;
 import com.mac.bry.crud.repositories.UserRepository;
 

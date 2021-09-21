@@ -15,6 +15,8 @@ public interface UserService {
 
 	void deleteUser(long id);
 	
+	void resetUserPassword(String mail);
+	
 	Iterable<UserDescription> showAllDescription(long id);
 
 	void addDescriptionToUser(long id, UserDescription userDescription);
@@ -24,6 +26,12 @@ public interface UserService {
 	void updateDescription(long id, UserDescription userDescription);
 
 	void deleteUserDescription(long id);
+	
+	void resetPassword(String mail);
+
+	User findUserByMail(String mail);
+
+	
 
 	
 
