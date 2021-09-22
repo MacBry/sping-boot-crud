@@ -26,7 +26,7 @@ public class ResetPasswordController {
 	
 	@PostMapping("/resetPassword")
 	public String resetPassword(String mail) {
-		if( userService.findUserByMail(mail)== null) {
+		if( userService.findUserByMail(mail)==null) {
 			return "reset-password-form";
 		}
 		userService.resetPassword(mail);

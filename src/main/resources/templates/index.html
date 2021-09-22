@@ -41,7 +41,12 @@
                             </tbody>
                         </table>
                     </div>      
-                    <p class="my-5"><a href="/signup" class="btn btn-danger"><i class="fas fa-user-plus ml-2"></i></a></p>
+                   <p>
+                    <a href="/signup" class="btn btn-danger"><i class="fas fa-user-plus ml-2"></i></a>
+                    <form action="logout" th:action="@{/logout}" method="post">                    
+                           <input type="submit" class="btn btn-danger" value="Logout">         
+                    </form>
+                    </p>
                 </div>
             </div>
         </div>
