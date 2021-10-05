@@ -8,7 +8,7 @@ public enum UserRoles {
 	private final String description;
 	
 	private UserRoles(String description) {
-		this.description =description;
+		this.description = description;
 	}
 
 	public String getDescription() {
