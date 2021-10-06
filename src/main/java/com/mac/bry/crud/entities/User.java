@@ -47,6 +47,9 @@ public class User {
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<UserDescription> userDescription = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Task> userTasks = new ArrayList<>(); 
 
     public User() {}
 
@@ -105,6 +108,14 @@ public class User {
     	this.userDescription.add(description);
     }
     
+    public List<Task> tetUserTasks(){
+    	return userTasks;
+    }
+    
+    public void addTaks(Task task) {
+    	this.userTasks.add(task);
+    }
+    
     
 	public Set<UserRole> getRoles() {
 		return roles;
@@ -116,6 +127,10 @@ public class User {
 
 	public void setUserDescription(List<UserDescription> userDescription) {
 		this.userDescription = userDescription;
+	}
+	
+	public void setUserTasks(List<Task>userTasks) {
+		this.userTasks = userTasks;
 	}
 	
 	
