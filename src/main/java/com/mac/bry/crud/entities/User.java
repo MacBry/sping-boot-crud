@@ -108,7 +108,7 @@ public class User {
     	this.userDescription.add(description);
     }
     
-    public List<Task> tetUserTasks(){
+    public List<Task> setUserTasks(){
     	return userTasks;
     }
     
@@ -116,7 +116,10 @@ public class User {
     	this.userTasks.add(task);
     }
     
-    
+	public List<Task> getUserTasks() {
+		return userTasks;
+	}
+
 	public Set<UserRole> getRoles() {
 		return roles;
 	}
