@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
@@ -46,9 +48,11 @@ public class User {
     private Set<UserRole> roles = new HashSet<>();
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT) // to remove "cannot simultaneously fetch multiple bags"
     private List<UserDescription> userDescription = new ArrayList<>();
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)// to remove "cannot simultaneously fetch multiple bags"
     private List<Task> userTasks = new ArrayList<>(); 
 
     public User() {}

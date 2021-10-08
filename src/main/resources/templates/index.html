@@ -26,6 +26,7 @@
                                     <th>Edit</th>
                                     <th>Delete</th>
                                     <th>Show Description</th>
+                                    <th>Show Tasks</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,11 +38,13 @@
                                     <td><a th:href="@{/edit/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-user-edit ml-2"></i></a></td>
                                     <td><a th:href="@{/delete/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-user-times ml-2"></i></a></td>
                                     <td><a th:href="@{/userDescription/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-address-card"></i></a></td>
+                                    <td><a th:href="@{/userTask/{id}(id=${user.id})}" class="btn btn-danger"><i class="fas fa-tasks"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>      
                    <p>
+               
                     
                     <form action="logout" th:action="@{/logout}" method="post">      
                     <a href="/signup" class="btn btn-danger"><i class="fas fa-user-plus ml-2"></i></a>              
