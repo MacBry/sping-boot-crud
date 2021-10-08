@@ -17,25 +17,31 @@
                     <form action="#" th:action="@{/addUserTask}" th:object="${task}" method="post">
                         
                             <div class="form-group col-md-6">
-                                <label for="firstName" class="col-form-label">Task Status</label>
-                                <select class="form-select">
+                                <label for="taskStatus" class="col-form-label">Task Status</label>
+                                <select class="form-control">
                                 <option th:each="taskStatus : ${T(com.mac.bry.crud.entities.TaskStatus).values()}"
                                 	th:value="${taskStatus}"
-                                	th:text="${taskStatus}">
+                                	th:text="${taskStatus.getDescription()}">
                                 	</option>
                                 </select>                                
                             </div>
+                            <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="taskStartingDate" class="col-form-label">Starting Date</label>
                                 <input type="date" th:field="*{taskStartingDate}" class="form-control" id="taskStartingDate">
                                 <span th:if="${#fields.hasErrors('taskStartingDate')}" th:errors="*{taskStartingDate}" class="text-danger"></span>
                             </div>
-                            
+                            <div class="form-group col-md-6">
+                                <label for="taskEndDate" class="col-form-label">End Date</label>
+                                <input type="date" th:field="*{taskEndDate}" class="form-control" id="taskEndDate">
+                                <span th:if="${#fields.hasErrors('taskEndDate')}" th:errors="*{taskEndDate}" class="text-danger"></span>
+                            </div>
+                            </div>
                             
                         
                         <div class="row">
                             <div class="col-md-6 mt-5">
-                                <input type="submit" class="btn btn-danger" value="Add User">
+                                <input type="submit" class="btn btn-warning" value="Add Task">
                             </div>
                         </div>    
                     </form>
