@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Task {
 
@@ -20,8 +22,10 @@ public class Task {
 	
 	private TaskStatus taskStatus;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate taskStartingDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate taskEndDate;
 	
 	private String taskDescription;

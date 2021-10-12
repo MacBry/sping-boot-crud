@@ -38,9 +38,12 @@
 							<tr th:each="task : ${task}">
 								<td th:text="${task.id}"></td>
 								<td th:text="${task.taskStatus}"></td>
-								<td><a th:href="@{/editTask/{id}(id=${userDescription.id})}" class="btn btn-warning"><i
+								<td th:text="${task.taskStartingDate}"></td>
+								<td th:text="${task.taskEndDate}"></td>
+								<td th:text="${task.taskDescription}"></td>
+								<td><a th:href="@{/editTask/{id}(id=${task.id})}" class="btn btn-warning"><i
 										class="fas fa-user-edit ml-2"></i></a></td>
-								<td><a th:href="@{/deleteTask/{id}(id=${userDescription.id})}" class="btn btn-warning"><i
+								<td><a th:href="@{/deleteTask/{id}(id=${task.id})}" class="btn btn-warning"><i
 										class="fas fa-user-times ml-2"></i></a></td>
 
 							</tr>

@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <form action="#" th:action="@{/addUserTask}" th:object="${task}" method="post">
-                        
+                        	<div class="row">
                             <div class="form-group col-md-6">
                                 <label for="taskStatus" class="col-form-label">Task Status</label>
                                 <select class="form-control">
@@ -25,16 +25,25 @@
                                 	</option>
                                 </select>                                
                             </div>
+                            </div>
                             <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="taskStartingDate" class="col-form-label">Starting Date</label>
-                                <input type="date" th:field="*{taskStartingDate}" class="form-control" id="taskStartingDate">
+                                <input type="date" th:field="*{taskStartingDate}" th:value="*{taskStartingDate}" class="form-control" id="taskStartingDate">
                                 <span th:if="${#fields.hasErrors('taskStartingDate')}" th:errors="*{taskStartingDate}" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="taskEndDate" class="col-form-label">End Date</label>
                                 <input type="date" th:field="*{taskEndDate}" class="form-control" id="taskEndDate">
                                 <span th:if="${#fields.hasErrors('taskEndDate')}" th:errors="*{taskEndDate}" class="text-danger"></span>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="taskDescription" class="col-form-label">Task description</label>
+                                 <textarea name="news_content" rows="10" cols="70" th:field="*{taskDescription}" class="form-control" id="taskEndDate">
+      
+    							</textarea>                               
                             </div>
                             </div>
                             

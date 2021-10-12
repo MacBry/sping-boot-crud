@@ -44,7 +44,7 @@ public class TaskController {
 			return "add-task";
 		}
 		taskService.addTaskToUser(id, task);
-		return "redirect:/show-tasks";
+		return "show-tasks";
 	}
 
 }
