@@ -40,6 +40,7 @@ public class TaskController {
 	@PostMapping("/addUserTask")
 	public String addUserTask(@Valid Task task, BindingResult result, Model model) {
 		model.addAttribute(task);
+		
 		if(result.hasFieldErrors()) {
 			return "add-task";
 		}

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +22,7 @@ public class Task {
 	@Column(name="Task_ID")
 	private long id;
 	
+	@Enumerated(EnumType.STRING)
 	private TaskStatus taskStatus;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
