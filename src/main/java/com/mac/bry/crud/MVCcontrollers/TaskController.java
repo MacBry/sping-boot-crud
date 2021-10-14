@@ -44,6 +44,7 @@ public class TaskController {
 		if(result.hasFieldErrors()) {
 			return "add-task";
 		}
+		System.out.println(task.getTaskStatus().toString());
 		taskService.addTaskToUser(id, task);
 		return "show-tasks";
 	}
