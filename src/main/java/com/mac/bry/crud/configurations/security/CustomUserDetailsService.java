@@ -1,4 +1,4 @@
-package com.mac.bry.crud.configurations;
+package com.mac.bry.crud.configurations.security;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,5 +1,6 @@
 package com.mac.bry.crud.services;
 
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	@Override
+	@Audit
 	public Iterable<Task> findAllUserTasks(long userId){
 		User user = userService.findUserById(userId);
 		return user.getUserTasks();

@@ -1,4 +1,4 @@
-package com.mac.bry.crud.configurations;
+package com.mac.bry.crud.configurations.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
