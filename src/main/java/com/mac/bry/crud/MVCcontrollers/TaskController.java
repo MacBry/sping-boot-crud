@@ -44,9 +44,25 @@ public class TaskController {
 		if(result.hasFieldErrors()) {
 			return "add-task";
 		}
-		System.out.println(task.getTaskStatus().toString());
 		taskService.addTaskToUser(id, task);
 		return "show-tasks";
+	}
+	
+	@GetMapping("/editTask/{id}")
+	public String showUpdateForm(@PathVariable("id") long id, Model model) {
+		Task task = taskService.findUserTaskByID(id);
+		model.addAttribute("task", task);
+		return "update-task";
+	}
+	
+	@PostMapping("/updateTask/{id}")
+	public String updateUserTask(@PathVariable("id") long id, @Valid Task task, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			task.setId(id);
+			return "update-task";
+		}
+		taskService.upadateTask(id, task);
+		return "redirect:/show-task";
 	}
 
 }
