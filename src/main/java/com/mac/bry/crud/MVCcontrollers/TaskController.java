@@ -62,7 +62,13 @@ public class TaskController {
 			return "update-task";
 		}
 		taskService.upadateTask(id, task);
-		return "redirect:/show-task";
+		return "redirect:/userTask/{id}";
+	}
+	
+	@GetMapping("/deleteTask/{id}")
+	public String deleteTask(@PathVariable("id") long id, Model model) {
+		taskService.deleteTask(id);
+		return "redirect:/userTask/{id}";
 	}
 
 }
