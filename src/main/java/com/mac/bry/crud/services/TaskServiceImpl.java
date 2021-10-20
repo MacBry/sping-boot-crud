@@ -40,19 +40,21 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	@Override
-	@Audit
+	@Audit(action = "TaskServiceImpl.findAllUserTasks")
 	public Iterable<Task> findAllUserTasks(long userId){
 		User user = userService.findUserById(userId);
 		return user.getUserTasks();
 	}
 	
 	@Override
+	@Audit(action = "TaskServiceImpl.findUserTaskByID")
 	public Task findUserTaskByID(long id) {
 		return taskRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid description id:"+ id));
 	}
 	
 	@Override
+	@Audit(action = "TaskServiceImpl.addTaskToUser")
 	public void addTaskToUser(long userId, Task task) {
 		User user = userService.findUserById(userId);
 		task.setUser(user);
@@ -61,6 +63,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	@Override
+	@Audit(action = "TaskServiceImpl.upadateTask")
 	public void upadateTask (long userId, Task task) {
 		User user = userService.findUserById(userId);
 		task.setUser(user);
@@ -69,6 +72,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 	
 	@Override
+	@Audit(action = "TaskServiceImpl.deleteTask")
 	public void deleteTask (long id) {
 		Task task = findUserTaskByID(id);
 		task.setUser(null);

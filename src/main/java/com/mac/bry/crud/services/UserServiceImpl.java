@@ -2,6 +2,7 @@ package com.mac.bry.crud.services;
 
 import java.util.Random;
 
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,51 +30,60 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.findUserByMail")
 	public User findUserByMail(String mail) {
 		return userRepository.findByEmail(mail);
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.findAllUsers")
 	public Iterable<User> findAllUsers(){
 		return userRepository.findAll();
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.findUserById")
 	public User findUserById(long id) {
 		return userRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.addUser")
 	public void addUser(User user) {
 		hashPassword(user);
 		userRepository.save(user);
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.updateUser")
 	public void updateUser(User user) {
 		hashPassword(user);
 		userRepository.save(user);
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.deleteUser")
 	public void deleteUser(long id) {
 		User user = findUserById(id);
 		userRepository.delete(user);
 	}
 	
-	@Override	
+	@Override
+	@Audit(action = "UserServiceImpl.resetUserPassword")
 	public void resetUserPassword(String mail) {
 		
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.showAllDescription")
 	public Iterable<UserDescription> showAllDescription(long id) {
 		User user = findUserById(id);
 		return  user.getUserDescription();
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.addDescriptionToUser")
 	public void addDescriptionToUser (long id, UserDescription userDescription) {
 		User user = findUserById(id);
 		userDescription.setUser(user);
@@ -83,12 +93,14 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.findUserDescriptionById")
 	public UserDescription findUserDescriptionById(long id) {
 		return userDescriptionRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid description Id:" + id));
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.updateDescription")
 	public void updateDescription(long id, UserDescription userDescription) {
 		User user = findUserById(id);
 		userDescription.setUser(user);
@@ -97,6 +109,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.deleteUserDescription")
 	public void deleteUserDescription (long id) {
 		UserDescription userDescription = findUserDescriptionById(id);
 		userDescription.setUser(null);
@@ -125,6 +138,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
+	@Audit(action = "UserServiceImpl.resetPassword")
 	public void resetPassword(String mail) {
 		String newPassword = generateRandomPassword();
 		User user = userRepository.findByEmail(mail);

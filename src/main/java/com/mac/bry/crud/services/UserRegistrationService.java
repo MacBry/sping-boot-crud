@@ -1,5 +1,6 @@
 package com.mac.bry.crud.services;
 
+import org.audit4j.core.annotation.Audit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,7 @@ public class UserRegistrationService {
 		this.userRoleRepository = userRoleRepository;
 	}
 	
+	@Audit(action = "UserRegistrationService.addWithDefaultRole")
 	public void addWithDefaultRole(User user) {
 		UserRole defaultRole = userRoleRepository.findByRole(UserRoles.DEFAULT_ROLE.getDescription());
 		user.getRoles().add(defaultRole);
